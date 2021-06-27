@@ -1,0 +1,35 @@
+server:
+  port:
+    3000
+
+
+spring:
+  config:
+    import: optional:configserver:http://localhost:8000/
+  cloud:
+    config:
+      uri: http://localhost:8000/
+      name: userservice
+
+  security:
+    user:
+      name: dev
+      password: dev
+      role: ADMIN
+
+#  autoconfigure:
+#    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+
+  profile:
+    active: dev
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+
+
+

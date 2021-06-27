@@ -1,0 +1,30 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/itsdevbrat/cloud-config-server
+          cloneOnStart: true
+          timeout: 4
+          default-label: main
+          repos:
+            userservice:
+              pattern: userservice
+              uri: https://github.com/itsdevbrat/cloud-config-server
+              search-paths: userservice/
+              cloneOnStart: true
+              timeout: 4
+              default-label: main
+
+            companyservice:
+              pattern: companyservice
+              uri: https://github.com/itsdevbrat/cloud-config-server
+              search-paths: companyservice/
+              cloneOnStart: true
+              timeout: 4
+              default-label: main
