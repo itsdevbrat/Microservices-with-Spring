@@ -2,6 +2,7 @@ package com.example.userservice.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @Entity
 public class User {
@@ -13,6 +14,8 @@ public class User {
     private String email;
     private String passwordHash;
     private int userType;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public String getUuid() {
         return uuid;
@@ -60,5 +63,21 @@ public class User {
 
     public void setUserType(int userType) {
         this.userType = userType;
+    }
+
+    public LocalDateTime getCreatedAt() {git 
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

@@ -1,7 +1,10 @@
 package com.example.userservice.controllers;
 
-import com.example.userservice.dto.UserDTO;
+import com.example.userservice.dto.UserRequest;
+import com.example.userservice.dto.UserResponse;
 import com.example.userservice.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +20,17 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/")
-    public String sayHi() {
-        return "Hii, "+port;
+    private static Logger log = LoggerFactory.getLogger(UserController.class);
+
+    @GetMapping("/{name}")
+    public UserResponse getUser(@PathVariable String name) {
+        log.info("Users name {}", name);
+        return userService.getUser(name);
     }
 
     @PostMapping("/")
-    public ResponseEntity<Void> createUser(@RequestBody UserDTO userDTO) {
-        return userService.createUser(userDTO);
+    public ResponseEntity<Object> createUser(@RequestBody UserRequest userRequest) {
+        log.info("Users Request {}", userRequest);
+        return userService.createUser(userRequest);
     }
 }
