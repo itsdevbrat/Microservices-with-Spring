@@ -17,8 +17,16 @@ spring:
       password: dev
       role: ADMIN
 
+#exclude devtools props
 #  autoconfigure:
 #    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+
+  datasource:
+    url: jdbc:h2:mem:userserviceDB
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+
 
   profile:
     active: dev
