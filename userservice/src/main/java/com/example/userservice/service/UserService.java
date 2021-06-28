@@ -23,7 +23,8 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    @Autowired
+    private RestTemplate restTemplate;
 
     public ResponseEntity<Object> createUser(UserRequest userRequest) {
         if (userRepository.findByName(userRequest.getName()) == null) {
@@ -35,7 +36,7 @@ public class UserService {
             user.setUserType(userRequest.getUserType());
             userRepository.save(user);
             ResponseEntity<UserResponse> userRes = restTemplate
-                    .exchange(String.format("http://localhost:3000/user/%s", user.getName()), HttpMethod.GET,
+                    .exchange(String.format("http://user-service/user/%s", user.getName()), HttpMethod.GET,
                             null, UserResponse.class);
 
             return new ResponseEntity<>(userRes.getBody(), HttpStatus.CREATED);

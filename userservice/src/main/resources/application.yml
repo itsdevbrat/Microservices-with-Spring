@@ -1,13 +1,12 @@
 spring:
   application:
-    name: userservice
+    name: user-service
   profiles:
     active: dev
 
 
   config:
     import: optional:configserver:http://localhost:8000/
-  cloud:
     config:
       uri: http://localhost:8000/
       name: userservice
@@ -28,7 +27,7 @@ spring:
     console:
       enable: true  #will be present at /h2-console
 
-#  sleutth:
+#  sleuth:
 #    sampler:
 #      probability: 1
 #  zipkin:

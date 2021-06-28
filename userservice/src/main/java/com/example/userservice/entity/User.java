@@ -65,7 +65,7 @@ public class User {
         this.userType = userType;
     }
 
-    public LocalDateTime getCreatedAt() {git 
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
