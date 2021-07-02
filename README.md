@@ -184,7 +184,24 @@ Why?
       ```
       -Dspring.config.location = C:myproperties/application.properties
       ```
-      
+  * Switching configuration based on environment(dev, sit, prod)
+    
+      1. Use CMD and specify the active profile property
+
+        ```
+        java -jar app.jar -Dspring.profiles.active=dev
+        ```
+        
+      2. Use @Profile annotation on top of classes for a granular control
+
+        ```
+        @Profile("dev")
+        @RestController
+        public class UserController {
+          @Value("downstreamUrl")
+          int downstreamUrl;
+        }
+        ```
 
 * ## Modern Centralized configuration method
 
