@@ -130,6 +130,7 @@ Why?
   6. Use **@ConfigurationProperties** annotation in conjuction with **@Configuration** annotation for Hierarchical Properties
      
       ```
+      @Configuration
       @ConfigurationProperties(prefix = "database") //All the properties that have the prefix **database** will get mapped to the variables defined
       public class Database {
           String url;
@@ -227,7 +228,8 @@ Why?
                     timeout: 4
                     default-label: main
                     
-                    ## The below configuration is only needed if you have kept config for multiple micro-services in one repo otherwise the config till here is enough
+                    ## The below configuration is only needed if you have kept config for multiple micro-services in one repo 
+                    ## otherwise the config till here is enough
                     repos:
                       userservice:
                         pattern: userservice
