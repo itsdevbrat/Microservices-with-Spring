@@ -102,6 +102,42 @@ Why?
             ```
             
             
+  4. Use **@PropertySource** annotation in conjuction with **@Configuration** annotation for Configuration Classes
+
+       ```
+       @Configuration
+       @PropertySource({
+           "classpath:config.properties",
+           "classpath:db.properties" //if same property, this will override
+       })
+       public class AppConfig {
+           @Value("hostUrl")
+           String hostUrl;
+       }
+       ```
+       
+  5. Use **@TestPropertySource** annotation in conjuction with **@SpringTest** annotation for Test Classes
+
+      ```
+      @RunWith(SpringRunner.class)
+      @TestPropertySource("classpath:foo.properties")
+      public class FilePropertyInjectionUnitTest {
+        @Value("${foo}")
+        private String foo;
+      }
+      ```
+      
+  6. Use **@ConfigurationProperties** annotation in conjuction with **@Configuration** annotation for Hierarchical Properties
+     
+      ```
+      @ConfigurationProperties(prefix = "database") //All the properties that have the prefix **database** will get mapped to the variables defined
+      public class Database {
+          String url;
+          String username;
+          String password;
+      }
+      ```
+     
             
 * ## Externalized Configurations using application-<sit|dev|..|prod>.properties/yml files
        
