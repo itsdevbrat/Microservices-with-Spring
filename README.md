@@ -248,16 +248,16 @@ Why?
           ```
       2. Use either an actuator or a message bus 
       
-          * Using Spring Boot Starter Actuator
+         * Using Spring Boot Starter Actuator
 
-              1. Add Dependency
+             1. Add Dependency
 
                 ```
                 implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
                 ```
               
-              2. Add configuration for actuator to expose a refresh endpoint which forces the microservice to refresh the application properties
+             2. Add configuration for actuator to expose a refresh endpoint which forces the microservice to refresh the application properties
 
                 ```
                 management:
