@@ -1,7 +1,88 @@
 # Microservices-with-Spring
 
+
+# Service Discovery Pattern
+Why? 
+IPs, ports of services could change hence hardcoding it would need service redeployment in case IP or PORT changes
+Horizontally scale services and load balance across them(supports client side load balncing with Ribbon)
+Health monitoring and routing based on it.
+
+* ## Discovery Ckient
+
+  1. ### Add the below dependency to your microservice
+
+      ```
+      implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+      ```
+  2. ### Annotate your microservice application class which is now an optional step as spring does it by default once dependency is added
+
+      ```
+      @SpringBootApplication
+      @ENableEurekaClient
+      public class UserserviceApplication { ..... }
+      ```
+      
+  3. ### Create a Ribbon based rest template so that it can load balance from the list of IPs that eureka server will be returning when requested using a service name.
+
+      ```
+      @Bean
+      @LoadBalanced
+      public RestTemplate getRestTemplate(){ 
+        return new RestTemplate();
+      }
+      ```
+      
+   4. ### Configure the client to talk to server again its optional if your server is running on same machone and on default port 8761
+
+      ```
+      eureka:
+        client:
+          serviceUrl:
+            defaultZone: http://localhost:8761
+      ```
+
+* ## Discovery Server
+
+  1. ### Create a spring application which wil act as Discovery server
+
+  2. ### Add the below dependency
+      
+      ```
+      implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+      ```
+  3. ### Annotate the spring application class as below
+  
+      ```
+      @SpringBootApplication
+      @EnableEurekaServer
+      public class EurekaserverApplication { ......... }
+     ``` 
+  4. ### Configure the server
+
+      ```
+      server:
+        port: 8761
+
+      eureka:
+        client:
+          #below properties will make sure that eureka doesn't register with itself, 
+          #this is only needed when you have a cluster of eureka server or multiple eureka servers
+          register-with-eureka: false 
+          fetch-registry: false
+      ```
+    
+   5. ### Build the jar or run the application and visit to see the eureka dashboard where you can see the services only if your client microservices are up and running and registered to this server
+     
+      ```
+      http://localhost:8761
+      ```
+
 # Centralized Configuration Pattern
 Why?
+Cemntralized hence easy to manage
+Change application properties at runtime
+Version control for configuration if stored on git server
+
 
 * ## Traditional configuration methods
 
