@@ -241,6 +241,8 @@ Why?
                 server:
                   git:
                     uri: https://github.com/itsdevbrat/cloud-config-server
+                    deleteUntrackedBranches: true
+                    force-pull: true
                     cloneOnStart: true
                     timeout: 4
                     default-label: main
@@ -278,8 +280,12 @@ Why?
       2. #### Add configuration properties
 
           ```
-          config:
-            import: optional:configserver:http://localhost:8000/
+          spring:
+            cloud:
+              config:
+                fail-fast: true
+            config:
+              import: optional:configserver:http://localhost:8000/
           ```
           
       3. #### To fetch properties for a specific environment from config server
