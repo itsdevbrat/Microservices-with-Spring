@@ -1,4 +1,84 @@
-# Microservices-with-Spring
+# Reactive Microservices-with-Spring
+
+# WebFlux 
+Why?
+Blocking and synchronous code is resources intensive as it blocks threads and hence less performant in terms of handling and processing requests.
+
+## Foundations
+
+### [Reactive Systems](https://www.reactivemanifesto.org/)
+This has to do with distributed systems and nothing with programming styles.
+This defines the standards/architectural principles for your system as a whole (which could comprise of n number of reactive/synchronous applications) to be reactive.
+It is used to achieve resilience and elasticity through message passing (i.e communication, and coordination, of distributed systems by passing clear destined messages) and hence referred to as message-driven.
+
+
+### [Reactive programming](https://en.wikipedia.org/wiki/Reactive_programming#Approaches_to_creating_reactive_programming_languages)
+Data Streams + Propogation Of Change
+is a paradigm where the availability of new information drives the logic forward rather than having control flow driven by a thread-of-execution 
+It suggests decomposing a problem into multiple discrete steps where each can be executed in an asynchronous(not existing or occurring at the same time) and non-blocking fashion, and then be composed to produce a workflow
+It is Event driven 
+
+#### Two API options to build reactive programming frameowrks
+ 
+  ##### 1. Passing Callbacks
+           i.e passing callback function to specify the logic once data is available
+ 
+  ##### 2. Declarative using functional composition
+           i.e using map, filter, etc to specify the logic to be executed on data as and when available
+           
+#### Programming abstractions for Reactive Programming
+
+  ##### 1. Futures 
+           (Before JAVA 8)
+  ##### 2. CompletableFutures 
+           (After JAVA 8, since Futures use to block current thread when get() method is called)
+  ##### 3. Reactive Streams 
+           (Completable futures didn't had features to handle backpressure, hence reactive streams specifically designed to add this extra feature)
+  
+  
+### Event driven vs Message driven
+In Message driven, components pass clear messages destined to a particular component.
+In Event driven, components just emit events when they reach a particular state and other components observe/listen to that.
+
+
+
+
+### [Reactive Streams](https://www.reactive-streams.org/)
+It is a JVM standard/set of interfaces defined by group of companies(incl. Netflix) to do reactive programming.
+It specifies the design to do Async Stream processing with Non-Blocking Backpressure following a Push based model.
+Reactive Streams = Push based Iterable Pattern + Observer Pattern + Functional Programming.
+
+It consists of 4 interfaces
+  1. Publisher (Subscribers this interfaces to subscribe to the publisher
+     ```
+     public interface Publisher<T> {
+         public void subscribe(Subscriber<? super T> s);
+     }
+     ```
+     
+  2. Subscriber (Publishers use this interface to emit events to Suscriber)
+     ```
+     public interface Subscriber<T> {
+        public void onSubscribe(Subscription s);
+        public void onNext(T t);
+        public void onError(Throwable t);
+        public void onComplete();
+     }
+     ```
+  3. Subscription (When subscriber subscribe to a publisher a subscription is created)
+     ```
+     public interface Subscription {
+        public void request(long n);
+        public void cancel();
+     }
+     ```
+  4. Processor (This is both a publisher and subscriber as it subscribes to the publisher get the data and after processing publishes those to subscribers)
+     ```
+     public interface Processor<T, R> extends Subscriber<T>, Publisher<R> {
+     
+     }
+     ```
+
 
 
 # Service Discovery Pattern
