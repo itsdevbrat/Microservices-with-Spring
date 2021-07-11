@@ -21,19 +21,19 @@ It is Event driven
 #### Two API options to build reactive programming frameowrks
  
   ##### 1. Passing Callbacks
-           i.e passing callback function to specify the logic once data is available
+  i.e passing callback function to specify the logic once data is available
  
   ##### 2. Declarative using functional composition
-           i.e using map, filter, etc to specify the logic to be executed on data as and when available
+  i.e using map, filter, etc to specify the logic to be executed on data as and when available
            
 #### Programming abstractions for Reactive Programming
 
   ##### 1. Futures 
-           (Before JAVA 8)
+  (Before JAVA 8)
   ##### 2. CompletableFutures 
-           (After JAVA 8, since Futures use to block current thread when get() method is called)
+  (After JAVA 8, since Futures use to block current thread when get() method is called)
   ##### 3. Reactive Streams 
-           (Completable futures didn't had features to handle backpressure, hence reactive streams specifically designed to add this extra feature)
+  (Completable futures didn't had features to handle backpressure, hence reactive streams specifically designed to add this extra feature)
   
   
 ### Event driven vs Message driven
