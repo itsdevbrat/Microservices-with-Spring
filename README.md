@@ -496,7 +496,27 @@ Version control for configuration if stored on git server
 
           
           
+          
+# Mongo DB setup
+## Download MongoDB server
+Ubuntu: 
+  ```
+  sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
+  sudo apt install mongodb-org
+  ```
 
+## Download Mongo Client (Compass)
+
+## Connect client application to mongodb by specifying the below properties
+  ```
+  spring:
+    data:
+      mongodb:
+        uri="mongodb://localhost:27017"
+  ```
+  
+  
+  
           
     
     
