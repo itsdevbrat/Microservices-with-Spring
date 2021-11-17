@@ -2,7 +2,7 @@
 
 # WebFlux 
 Why?
-Blocking and synchronous code is resources intensive as it blocks threads and hence less performant in terms of handling and processing requests.
+Blocking and synchronous code is resources intensive as it blocks threads and hence less performant in terms of handling requests in an heavy IO based application.
 
 ## Foundations
 
